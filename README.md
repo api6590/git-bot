@@ -26,3 +26,45 @@ The `generatePRTitle` function is designed to generate a PR title based on the E
 export function generatePRTitle(eipNumber: number, description: string): string {
   return `Update EIP-${eipNumber}: ${description}`;
 }
+```
+
+### 2. Write Test Cases for the Function
+
+To ensure the `generatePRTitle` function works as expected, we have written test cases using Jest. The test cases are located in the `src/utils` directory.
+
+#### Test Cases
+
+```typescript
+// src/utils/generatePRTitle.test.ts
+
+import { generatePRTitle } from './generatePRTitle';
+
+describe('generatePRTitle', () => {
+  it('should generate a PR title with the correct format', () => {
+    const eipNumber = 3540;
+    const description = 'EVM Object Format (EOF)';
+    const expectedTitle = 'Update EIP-3540: EVM Object Format (EOF)';
+    expect(generatePRTitle(eipNumber, description)).toBe(expectedTitle);
+  });
+
+  // Add more test cases as needed
+});
+```
+
+### 3. Integrate the Function into the Main Logic
+The `generatePRTitle` function is integrated into the main logic of the EIP-Bot. Specifically, it is used in the main.ts file to generate PR titles when processing pull requests.
+
+#### Integration
+```typescript
+import { generatePRTitle } from './utils/generatePRTitle';
+
+// Example usage
+const eipNumber = 3540;
+const description = 'EVM Object Format (EOF)';
+const prTitle = generatePRTitle(eipNumber, description);
+console.log(prTitle); // Output: "Update EIP-3540: EVM Object Format (EOF)"
+```
+
+### 4. Update the package.json File
+To ensure that the tests can be run, update the package.json file to include the necessary scripts and dependencies.
+
